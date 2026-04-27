@@ -107,3 +107,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Development only: allow React frontend to call Django API
 CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = 'users.User'
+# REST Framework Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
