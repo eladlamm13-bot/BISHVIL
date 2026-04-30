@@ -19,4 +19,5 @@ class User(AbstractUser):
     is_active_worker = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.get_full_name() or self.username
+        return self.get_full_name() or self.username 
+    
