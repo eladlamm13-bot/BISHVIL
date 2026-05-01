@@ -7,12 +7,14 @@ class Project(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    # קשר לאזור
     region = models.ForeignKey(
         Region,
         on_delete=models.CASCADE,
         related_name='projects'
     )
 
+    # קשר למקום (לא חובה)
     place = models.ForeignKey(
         Place,
         on_delete=models.SET_NULL,
@@ -21,11 +23,28 @@ class Project(models.Model):
         related_name='projects'
     )
 
+    # מי יצר את הפרויקט
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
         related_name='created_projects'
+    )
+
+    # 👇 מנהל הפרויקט
+    project_manager = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='managed_projects'
+    )
+
+    # 👇 עובדים בפרויקט
+    assigned_users = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        blank=True,
+        related_name='assigned_projects'
     )
 
     class Status(models.TextChoices):
