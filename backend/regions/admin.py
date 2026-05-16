@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Region, Place
+from .models import Region
 
 admin.site.register(Region)
-admin.site.register(Place)

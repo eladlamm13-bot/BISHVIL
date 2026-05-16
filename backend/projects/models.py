@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-from regions.models import Region, Place
+from regions.models import Region
+from places.models import Place  # עכשיו אנחנו מייבאים את המקום מהבית החדש שלו
 
 
 class Project(models.Model):

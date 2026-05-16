@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'tasks',
     'content_items',
     'reminders',
+    'places',
 ]
 
 

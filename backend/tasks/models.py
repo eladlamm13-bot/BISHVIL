@@ -1,8 +1,8 @@
 from django.db import models
 from django.conf import settings
-from regions.models import Region, Place
 from projects.models import Project
-
+from regions.models import Region
+from places.models import Place  # הכתובת החדשה של המקומות
 
 class Task(models.Model):
     title = models.CharField(max_length=200)
@@ -10,13 +10,17 @@ class Task(models.Model):
 
     project = models.ForeignKey(
         Project,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='tasks'
     )
 
     region = models.ForeignKey(
         Region,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='tasks'
     )
 
@@ -40,6 +44,7 @@ class Task(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         related_name='created_tasks'
     )
 
@@ -83,7 +88,9 @@ class ProjectTask(models.Model):
 
     project = models.ForeignKey(
         Project,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
         related_name='project_specific_tasks'
     )
 
