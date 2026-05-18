@@ -15,7 +15,7 @@ urlpatterns = [
     # משתמשים
     path('api/users/', include('users.urls')), 
     
-    # אזורים - השורה שחסרה לך!
+    # אזורים
     path('api/regions/', include('regions.urls')), 
 
     # מקומות וסוגי מקומות
@@ -23,4 +23,7 @@ urlpatterns = [
     
     # משימות
     path('api/', include('tasks.urls')),
+
+    # תוכן - הנה השורה החדשה!
+    path('api/', include('content_items.urls')),
 ]
