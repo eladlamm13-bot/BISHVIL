@@ -7,9 +7,12 @@ class ContentItem(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
 
+    # ✅ תוקן ל-null=True ו-blank=True כדי לאפשר יצירת תוכן שלא משויך למשימה ספציפית
     task = models.ForeignKey(
         Task,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,  # שונה ל-SET_NULL כדי שמחיקת משימה לא תמחק את הפריט עצמו
+        null=True,
+        blank=True,
         related_name='contents'
     )
 
@@ -31,8 +34,9 @@ class ContentItem(models.Model):
         choices=ContentType.choices
     )
 
-    file_url = models.URLField(blank=True)
-    drive_link = models.URLField(blank=True)
+    # ✅ נוסף blank=True ו-null=True כדי לאפשר שדות ריקים ללא שגיאות תקינות URL
+    file_url = models.URLField(blank=True, null=True)
+    drive_link = models.URLField(blank=True, null=True)
 
     class ApprovalStatus(models.TextChoices):
         DRAFT = 'draft', 'טיוטה'

@@ -11,12 +11,19 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
+    # משתמשים
     path('api/users/', include('users.urls')),
+
+    # אזורים
     path('api/regions/', include('regions.urls')),
 
     # פרויקטים
     path('api/', include('projects.urls')),
 
+    # מקומות ומשימות
     path('api/', include('places.urls')),
     path('api/', include('tasks.urls')),
+
+    # תוכן
+    path('api/', include('content_items.urls')),
 ]

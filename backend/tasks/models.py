@@ -72,6 +72,12 @@ class Task(models.Model):
         default=Priority.MEDIUM
     )
 
+    # ✅ השדות שהיו חסרים לניהול תוכן הוספו לכאן!
+    is_content_task = models.BooleanField(default=False)
+    task_type = models.CharField(max_length=50, blank=True, null=True)
+    content_type = models.CharField(max_length=50, blank=True, null=True)
+    content_created = models.BooleanField(default=False)
+
     due_date = models.DateField(null=True, blank=True)
     drive_link = models.URLField(blank=True)
 
@@ -107,6 +113,12 @@ class ProjectTask(models.Model):
         choices=Task.Status.choices,
         default=Task.Status.NEW
     )
+
+    # ✅ השדות הוספו גם למשימות פרויקט ליתר ביטחון
+    is_content_task = models.BooleanField(default=False)
+    task_type = models.CharField(max_length=50, blank=True, null=True)
+    content_type = models.CharField(max_length=50, blank=True, null=True)
+    content_created = models.BooleanField(default=False)
 
     due_date = models.DateField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
