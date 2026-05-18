@@ -15,9 +15,16 @@ class User(AbstractUser):
         default=Role.EMPLOYEE
     )
 
+    region = models.ForeignKey(
+        "regions.Region",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="users"
+    )
+
     phone = models.CharField(max_length=20, blank=True)
     is_active_worker = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.get_full_name() or self.username 
-    
+        return self.get_full_name() or self.username
