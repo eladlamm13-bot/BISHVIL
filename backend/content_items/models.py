@@ -15,7 +15,31 @@ class ContentItem(models.Model):
         blank=True,
         related_name='contents'
     )
+# --- שדות שיוך ארגוני שנוספו ---
+    region = models.ForeignKey(
+        'regions.Region', # השתמש במחרוזת כדי למנוע ייבוא מעגלי
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='contents'
+    )
 
+    place = models.ForeignKey(
+        'places.Place',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='contents'
+    )
+
+    associated_project = models.ForeignKey(
+        'projects.Project',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='contents'
+    )
+    # -------------------------------
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,

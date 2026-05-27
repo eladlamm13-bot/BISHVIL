@@ -4,7 +4,10 @@ from .views import ContentItemViewSet # ודא שככה קוראים ל-ViewSet 
 
 router = DefaultRouter()
 # חשוב: ה-React מנסה לגשת לנתיב 'contents', אז אנחנו רושמים אותו בדיוק כך
-router.register(r'contents', ContentItemViewSet)
+# בקובץ content_items/urls.py
+
+# שנה את השורה הזו:
+router.register(r'contents', ContentItemViewSet, basename='content-item')
 
 urlpatterns = [
     path('', include(router.urls)),

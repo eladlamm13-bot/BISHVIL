@@ -4,6 +4,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from rest_framework.routers import DefaultRouter
+from users.views import OrgUserViewSet
+
+# הוספת ראוטר ייעודי עבור נתיבים שיושבים ישירות תחת /api/
+router = DefaultRouter()
+router.register(r'org-users', OrgUserViewSet, basename='org-users')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,6 +19,9 @@ urlpatterns = [
 
     # משתמשים
     path('api/users/', include('users.urls')),
+
+    # נתיב ישיר ל-org-users שהפרונטאנד מנסה לגשת אליו
+    path('api/', include(router.urls)),
 
     # אזורים
     path('api/regions/', include('regions.urls')),
