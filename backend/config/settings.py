@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'content_items',
     'reminders',
     'places',
+    'dashboard',
 ]
 
 

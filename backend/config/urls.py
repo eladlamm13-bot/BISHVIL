@@ -26,4 +26,5 @@ urlpatterns = [
 
     # תוכן
     path('api/', include('content_items.urls')),
+    path('api/', include('dashboard.urls')),
 ]
